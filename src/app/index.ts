@@ -1,13 +1,29 @@
-const message = 'coffee';
+// import * as path from 'path'
+import * as fs from 'fs'
 
-export function testFunction(value: string = message) {
-  return `Do you want some ${value}`;
+const testDirectory = 'D:\\coding test'
+
+// fs.existsSync(directory) // checks if the directory exists
+
+export function arrayOfItemsInDirectory(directory) {
+  const arrayOfSongs = []
+  const items = fs.readdirSync(directory)
+  items.forEach(item => {
+    fs.readdirSync(`${testDirectory}\\${item}`).forEach(file => {
+      arrayOfSongs.push(file)
+    })
+  })
+  console.log(arrayOfSongs.length)
 }
 
-// const x = testFunction(message)
-// console.log(x)
+// if (fs.existsSync(`${testDirectory}\\${file}`)) {
+//   return console.log(true)
+//   } else {
+//     return console.log(false)
+//   }
 
-const obj = { width: 10, height: 15 };
-// Why is this NaN? Spelling is hard!
-const area = obj.width * obj.height;
-console.log(area);
+function runTest(directory) {
+  arrayOfItemsInDirectory(directory)
+}
+
+console.log(runTest(testDirectory))
